@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 export default App = () => {
   const [people, setpeople] = useState([
@@ -20,16 +27,22 @@ export default App = () => {
   ]);
   return (
     <View style={styles.container}>
-      <ScrollView>
+      {
+        /* <ScrollView>
         {people.map((item) => {
-          return (
-            <View key={item.key}>
-              <Text style={styles.text}>{item.day}</Text>
-            </View>
-          );
+          <View key={item.key}>
+            <Text style={styles.text}>{item.day}</Text>
+          </View>;
         })}
-      </ScrollView>
-      <Button title="im button"></Button>
+      </ScrollView> */
+
+        <FlatList
+          numColumns={2}
+          data={people}
+          // keyExtractor={item.id} if id instead of key
+          renderItem={({ item }) => <Text style={styles.text}>{item.day}</Text>}
+        />
+      }
     </View>
   );
 };
