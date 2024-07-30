@@ -1,23 +1,33 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 const Header = (props) => {
   //state for particular component- using hooks(usestate)
   const [name, setName] = useState("Ram");
-  const [person, setPerson] = useState({ name: "Ram", age: 23 });
-  const clickHandler = () => {
-    setName("kishore");
-    setPerson({ name: "kishore", age: 45 });
-  };
+  const [age, setAge] = useState(23);
+  const clickHandler = () => {};
   return (
     <View>
-      <Text>my name is: {name}</Text>
-      <Text>
-        person information name : {person.name}, age: {person.age}
-      </Text>
+      <Text>Enter your name : </Text>
+      <TextInput
+        placeholder="enter name"
+        style={styles.input}
+        onChangeText={(value) => setName(value)}
+      />
+
+      <Text>Enter your age : </Text>
+      <TextInput
+        placeholder="enter age"
+        style={styles.input}
+        keyboardType="numeric"
+        onChangeText={(value) => setAge(value)}
+      />
 
       <Button title="update value" onPress={clickHandler}></Button>
+
+      <Text>
+        your name: {name}, your age: {age}
+      </Text>
     </View>
   );
 };
@@ -53,8 +63,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-
-    backgroundColor: "yellow",
   },
   header: {
     backgroundColor: "blue",
@@ -64,6 +72,13 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
     padding: 20,
     fontWeight: "bold",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#777",
+    padding: 10,
+    margin: 10,
+    width: 250,
   },
 });
 
