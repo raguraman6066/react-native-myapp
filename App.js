@@ -1,64 +1,41 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
-
-const Header = (props) => {
-  //state for particular component- using hooks(usestate)
-  const [name, setName] = useState("Ram");
-  const [age, setAge] = useState(23);
-  const clickHandler = () => {};
-  return (
-    <View>
-      <Text>Enter your name : </Text>
-      <TextInput
-        placeholder="enter name"
-        style={styles.input}
-        onChangeText={(value) => setName(value)}
-      />
-
-      <Text>Enter your age : </Text>
-      <TextInput
-        placeholder="enter age"
-        style={styles.input}
-        keyboardType="numeric"
-        onChangeText={(value) => setAge(value)}
-      />
-
-      <Button title="update value" onPress={clickHandler}></Button>
-
-      <Text>
-        your name: {name}, your age: {age}
-      </Text>
-    </View>
-  );
-};
-
-const Body = () => {
-  return (
-    <View>
-      <Text>This is sample body content</Text>
-    </View>
-  );
-};
-
-const Footer = () => {
-  return (
-    <View>
-      <Text>Copy rights of company</Text>
-    </View>
-  );
-};
+import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default App = () => {
+  const [people, setpeople] = useState([
+    { day: "sunday", key: "1" },
+    { day: "monday", key: "2" },
+    { day: "tuesday", key: "3" },
+    { day: "wednesday", key: "4" },
+    { day: "thusday", key: "5" },
+    { day: "friday", key: "6" },
+    { day: "saturday", key: "7" },
+    { day: "sunday", key: "11" },
+    { day: "monday", key: "12" },
+    { day: "tuesday", key: "13" },
+    { day: "wednesday", key: "14" },
+    { day: "thusday", key: "15" },
+    { day: "friday", key: "16" },
+    { day: "saturday", key: "17" },
+  ]);
   return (
     <View style={styles.container}>
-      <Header />
+      <ScrollView>
+        {people.map((item) => {
+          return (
+            <View key={item.key}>
+              <Text style={styles.text}>{item.day}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
+      <Button title="im button"></Button>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
@@ -72,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
     padding: 20,
     fontWeight: "bold",
+    margin: 10,
   },
   input: {
     borderWidth: 1,
