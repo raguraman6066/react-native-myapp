@@ -1,11 +1,23 @@
 import { StatusBar } from "expo-status-bar";
-
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 const Header = (props) => {
+  //state for particular component- using hooks(usestate)
+  const [name, setName] = useState("Ram");
+  const [person, setPerson] = useState({ name: "Ram", age: 23 });
+  const clickHandler = () => {
+    setName("kishore");
+    setPerson({ name: "kishore", age: 45 });
+  };
   return (
     <View>
-      <Text>Hii Good morning {props.name}</Text>
+      <Text>my name is: {name}</Text>
+      <Text>
+        person information name : {person.name}, age: {person.age}
+      </Text>
+
+      <Button title="update value" onPress={clickHandler}></Button>
     </View>
   );
 };
@@ -29,11 +41,7 @@ const Footer = () => {
 export default App = () => {
   return (
     <View style={styles.container}>
-      <Header name="ragu" />
-      <Header name="anbu" />
-      <Header name="kumar" />
-      <Body />
-      <Footer />
+      <Header />
     </View>
   );
 };
